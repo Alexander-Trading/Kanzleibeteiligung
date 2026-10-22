@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Kanzleibeteiligung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: Kopfzeile + Reiterleiste (sticky), darunter je Reiter Eingabespalte links und Ergebnisse rechts; breite Tabellen scrollen in sich. */
+:root{
+  --bg:#f3f5f3; --surface:#ffffff; --sunken:#e9edea; --fg:#18231f; --muted:#5a6a64; --line:#d3dbd6;
+  --accent:#1c5a50; --accent-fg:#ffffff; --accent-soft:#dceae5; --pos:#23744a; --neg:#b0372b; --warn:#9a6210; --ov:#fff1cf; --ov-line:#e0b85a;
+  --f-display:"Newsreader", Georgia, "Times New Roman", serif;
+  --f-body:"Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --r:6px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111715; --surface:#18201d; --sunken:#0d1210; --fg:#e1e8e5; --muted:#91a29b; --line:#2a3531;
+  --accent:#71c2b0; --accent-fg:#0d1513; --accent-soft:#1d3631; --pos:#6fcf97; --neg:#ff8b7c; --warn:#e2aa4c; --ov:#3a3220; --ov-line:#8a6d2c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111715; --surface:#18201d; --sunken:#0d1210; --fg:#e1e8e5; --muted:#91a29b; --line:#2a3531;
+  --accent:#71c2b0; --accent-fg:#0d1513; --accent-soft:#1d3631; --pos:#6fcf97; --neg:#ff8b7c; --warn:#e2aa4c; --ov:#3a3220; --ov-line:#8a6d2c; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:14px;line-height:1.45;font-variant-numeric:tabular-nums}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:14px 8px}
+.head h1{font-family:var(--f-display);font-weight:600;font-size:26px;letter-spacing:-.01em;margin:0;line-height:1.1}
+.head p{margin:2px 0 0;color:var(--muted);font-size:13px}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:thin;margin-bottom:-1px}
+.tabs button{all:unset;cursor:pointer;padding:9px 12px;font-weight:500;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap}
+.tabs button:hover{color:var(--fg)}
+.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+.tabs button:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+main{padding-block:20px 60px}
+h2{font-family:var(--f-display);font-weight:600;font-size:21px;margin:0 0 4px;text-wrap:balance}
+h3{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:0 0 10px;font-weight:600}
+.lead{color:var(--muted);margin:0 0 18px;max-width:72ch}
+.cols{display:grid;grid-template-columns:minmax(280px,360px) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:900px){.cols{grid-template-columns:minmax(0,1fr)}}
+.stack{display:flex;flex-direction:column;gap:16px;min-width:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;min-width:0}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.f{display:grid;grid-template-columns:minmax(0,1fr) 138px;gap:8px;align-items:center;padding:4px 0}
+.f+.f{border-top:1px dashed var(--line)}
+.fl{font-size:13px}
+.fl small{display:block;color:var(--muted);font-size:11.5px}
+.fi{display:flex;align-items:center;gap:4px}
+.fi em{font-style:normal;color:var(--muted);font-size:12px;min-width:14px}
+input,select{font:inherit;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:5px 7px;width:100%;min-width:0}
+input[inputmode="decimal"]{text-align:right}
+input:focus,select:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:var(--accent)}
+input[type="checkbox"]{width:auto;accent-color:var(--accent)}
+.chk{display:flex;gap:8px;align-items:center;padding:5px 0;font-size:13px}
+.btn{font:inherit;font-weight:600;cursor:pointer;border-radius:4px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:6px 11px}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.btn.primary:hover{color:var(--accent-fg);filter:brightness(1.08)}
+.btn.small{padding:3px 8px;font-size:12px}
+.btn.danger{color:var(--neg)}
+.x{all:unset;cursor:pointer;color:var(--muted);padding:0 6px;font-size:16px;line-height:1}
+.x:hover{color:var(--neg)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.kpi{background:var(--surface);padding:12px 14px;min-width:0}
+.kpi .l{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.kpi .v{font-size:22px;font-weight:600;margin-top:3px;white-space:nowrap}
+.kpi .s{font-size:12px;color:var(--muted)}
+.kpi.hl .v{color:var(--accent)}
+.tw{overflow-x:auto;min-width:0}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:5px 8px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-weight:600;color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;background:var(--sunken)}
+th:first-child,td:first-child{text-align:left}
+td.t{text-align:left;white-space:normal}
+tr.sum td{font-weight:700;border-top:2px solid var(--fg);border-bottom:none}
+tr.sub td{font-weight:600;background:var(--sunken)}
+tr.minus td:first-child{padding-left:18px;color:var(--muted)}
+.neg{color:var(--neg)}.pos{color:var(--pos)}.mut{color:var(--muted)}
+.pill{display:inline-block;font-size:11px;font-weight:600;padding:1px 7px;border-radius:99px;background:var(--accent-soft);color:var(--accent)}
+.pill.warn{background:var(--ov);color:var(--warn)}
+.pill.bad{background:transparent;border:1px solid var(--neg);color:var(--neg)}
+table.in td{padding:2px 3px}
+table.in input{border-color:transparent;background:transparent;padding:4px 6px}
+table.in input:hover{border-color:var(--line)}
+table.in input:focus{background:var(--surface)}
+.grid td{padding:0;border-right:1px solid var(--line)}
+.grid td.m{padding:4px 8px;font-weight:600;background:var(--sunken);position:sticky;left:0;z-index:1}
+.grid th{position:sticky;top:0;z-index:2}
+.grid th:first-child{left:0;z-index:3}
+.grid input{border:none;border-radius:0;background:transparent;padding:5px 7px;width:104px;font-size:12.5px}
+.grid input.note{width:220px;text-align:left}
+.grid input.ov{background:var(--ov);box-shadow:inset 0 -2px 0 var(--ov-line)}
+.grid td.c{padding:5px 8px;font-weight:600}
+.grid tr.ysum td{background:var(--sunken);font-weight:700;padding:5px 8px;border-top:1px solid var(--fg)}
+.grid tr.lowrow td.c.bal{color:var(--neg)}
+.gridwrap{max-height:70vh;overflow:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.chart svg{display:block;width:100%;height:auto;min-width:520px}
+.chart text{fill:var(--muted);font-family:var(--f-body);font-size:11px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.seg button{all:unset;cursor:pointer;padding:4px 10px;font-size:12.5px;font-weight:500}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.spread{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.note-box{font-size:12.5px;color:var(--muted);border-left:3px solid var(--line);padding:4px 0 4px 12px;max-width:80ch}
+.lst{display:flex;flex-direction:column;gap:6px}
+.lst .it{display:grid;grid-template-columns:minmax(0,1fr) 120px auto;gap:6px;align-items:center}
+.lst .it4{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr) minmax(0,1fr) auto;gap:6px;align-items:center;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+.lst .it4>:first-child{grid-column:1/-1}
+@media (max-width:520px){.f{grid-template-columns:minmax(0,1fr) 120px}}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.sc{border:1px solid var(--line);border-radius:var(--r);padding:12px;cursor:pointer;background:var(--surface);text-align:left;font:inherit;color:inherit}
+.sc:hover{border-color:var(--accent)}
+.sc[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:var(--accent-soft)}
+.sc .n{font-size:12px;color:var(--muted);font-weight:600}
+.sc .k{font-size:20px;font-weight:600;margin:2px 0}
+.sc .p{font-size:12.5px}
+#datapanel textarea{width:100%;min-height:180px;font:12px ui-monospace,Menlo,Consolas,monospace;background:var(--sunken);color:var(--fg);border:1px solid var(--line);border-radius:4px;padding:8px}
+.status{font-size:12px;color:var(--muted)}
+.best{background:var(--accent-soft)}
+@media (prefers-reduced-motion: no-preference){.tabs button,.sc,.btn{transition:color .12s,border-color .12s,background .12s}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h1>Kanzleibeteiligung</h1>
+        <p>Kaufpreis, Einkünfte nach § 18 EStG, Finanzierung und Liquidität beim Partnereinstieg</p>
+      </div>
+      <div class="row">
+        <span class="pill warn" id="bsp" hidden>Beispielwerte · eigene Daten über „Daten sichern / laden“</span><span class="status" id="savestate"></span>
+        <button class="btn small" id="btn-data" aria-expanded="false" aria-controls="datapanel">Daten sichern / laden</button>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist" id="tabs"></nav>
+  </div>
+</header>
+<div class="wrap">
+  <section id="datapanel" class="card" hidden style="margin-top:16px">
+    <div class="spread"><h2>Daten sichern und laden</h2><button class="x" id="dp-close" aria-label="Schließen">×</button></div>
+    <p class="lead" style="margin-bottom:10px">Deine Eingaben werden nur in diesem Browser gespeichert und nirgendwohin übertragen. Für ein Backup oder einen anderen Rechner speicherst du sie als Datei und lädst sie dort wieder.</p>
+    <div class="row" style="margin-bottom:10px"><button class="btn primary" id="dp-save">Als Datei speichern</button><label class="btn" for="dp-file" style="display:inline-block">Datei laden</label><input type="file" id="dp-file" accept=".json,application/json" hidden></div>
+    <textarea id="dp-text" spellcheck="false" aria-label="Daten als Text"></textarea>
+    <div class="row" style="margin-top:10px">
+      <button class="btn primary" id="dp-copy">Text kopieren</button>
+      <button class="btn" id="dp-load">Eingefügten Text laden</button>
+      <button class="btn danger" id="dp-reset">Auf Beispielwerte zurücksetzen</button>
+      <span class="status" id="dp-msg"></span>
+    </div>
+  </section>
+  <main id="main"></main>
+</div>
+
+<script>
+"use strict";
+/* ---------- Startwerte aus "Kaufpreis_Kanzleianteile.xlsx" ---------- */
+const DEFAULTS = {
+  v:1, beispiel:true,
+  jahre:[2021,2022,2023,2024,2025],
+  ges:[
+    {name:"StB PartG mbB", umsatz:[2000000,2200000,2400000,2600000,2800000], gewinn:[600000,660000,720000,800000,900000]},
+    {name:"RA PartG mbB",  umsatz:[100000,110000,120000,130000,140000],      gewinn:[50000,55000,60000,65000,70000]},
+    {name:"UB GmbH",       umsatz:[40000,40000,45000,45000,50000],           gewinn:[0,2000,3000,3000,5000]}
+  ],
+  kp:{mMin:0.8,mMax:1.2,mHoch:1.25,verhBasis:2500000,verhFaktor:0.9,ansatz:"verh",anteil:10,nd:10},
+  gv:{basis:"last",partner:5,tv:100000,quote:10,korrekturen:[{label:"Beispiel-Korrektur",betrag:50000}]},
+  so:{vw:18000,kvAbzug:5000,kvBeitrag:6000,splitting:false,kist:0},
+  nr:{rest:0,tilgung:20000,vwAnteil:50},
+  dl:{ek:0,zins:4,laufzeit:120,tf:12,rhythmus:3,start:"2027-01",sonder:[]},
+  liq:{start:"2026-01",monate:48,saldo:5000,eintritt:"2027-01",vwHalbBis:2028,vwHalbAnteil:50,vzErst:5000,nzMonat:5,
+       kdAuto:true,rgAuto:true,spar:2000,sparAb:"2027-01",entMtl:0,entAb:"2029-01",
+       wied:[{id:"r1",label:"Lebensversicherung",betrag:25,ab:"2026-01",bis:""},{id:"r2",label:"Kontoführung",betrag:7,ab:"2026-01",bis:""}],
+       ov:{}},
+  ums:{
+    vgl:{"2023":[150000,180000,190000,190000,200000,250000,200000,180000,220000,210000,220000,310000],
+         "2024":[160000,190000,200000,210000,210000,260000,210000,190000,230000,220000,230000,290000],
+         "2025":[170000,200000,210000,220000,220000,280000,220000,200000,240000,230000,250000,360000]},
+    jahr:2026,
+    umsatz:[180000,215000,225000,230000,235000,300000,235000,210000,255000,null,null,null],
+    gewinn:[20000,60000,70000,75000,80000,120000,75000,55000,90000,null,null,null],
+    korrektur:0
+  },
+  kfz:{entf:20,tage:200,pausch:0.38,satz:42,afaJ:6,
+    f:[
+      {name:"Fahrzeug A",typ:"V",km:25000,l:7,lp:1.8,kwh:0,kp:0.39,wart:0.08,dar:50000,zins:5,lz:4,blp:50000,leas:0,st:250,ver:1200,sonst:0},
+      {name:"Fahrzeug B",typ:"H",km:25000,l:4,lp:1.8,kwh:12,kp:0.39,wart:0.08,dar:50000,zins:5,lz:4,blp:50000,leas:0,st:40,ver:1200,sonst:0},
+      {name:"Fahrzeug C",typ:"E",km:25000,l:0,lp:1.8,kwh:18,kp:0.39,wart:0.05,dar:50000,zins:5,lz:4,blp:50000,leas:0,st:0,ver:1200,sonst:0}
+    ]},
+  giro:{extra:0,buch:["Kontoführungsgebühr","Tätigkeitsvergütung","Umbuchung Gehalt","Krankenversicherung","Versorgungswerk","Lebensversicherung","Steuervorauszahlung","Kapitaldienst","Zusätzliche Entnahme"],
+    modelle:[{name:"Konto Basis",grund:2,paket:0,karte:1,frei:0,preis:0.5},{name:"Konto Komfort",grund:2,paket:5,karte:1,frei:15,preis:0.3},
+             {name:"Konto Premium",grund:2,paket:10,karte:0,frei:null,preis:0}]},
+  ui:{tab:"uebersicht",jahr:null,nurZahl:true}
+};
+const KEY="kanzleibeteiligung-v1";
+const clone=o=>JSON.parse(JSON.stringify(o));
+let S=load();
+function load(){try{const t=localStorage.getItem(KEY);if(t){const o=JSON.parse(t);if(o&&o.v===1)return merge(clone(DEFAULTS),o);}}catch(e){}return clone(DEFAULTS);}
+function merge(a,b){for(const k in b){if(b[k]&&typeof b[k]==="object"&&!Array.isArray(b[k])&&a[k]&&typeof a[k]==="object"&&!Array.isArray(a[k]))merge(a[k],b[k]);else a[k]=b[k];}return a;}
+let saveT;function save(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S));msg("savestate","Gespeichert");}catch(e){msg("savestate","Nicht gespeichert (Browser-Speicher gesperrt)");}},300);}
+function msg(id,t){const el=document.getElementById(id);if(el)el.textContent=t;}
+
+/* ---------- Helfer ---------- */
+const MON=["Jan","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"];
+const sum=a=>a.reduce((s,x)=>s+(+x||0),0);
+const avg=a=>{const b=a.filter(x=>x!=null&&x!==""&&!isNaN(x));return b.length?sum(b)/b.length:0;};
+const nf={};function de(n,d=0){if(n==null||n===""||isNaN(n))return "–";const k=d;if(!nf[k])nf[k]=new Intl.NumberFormat("de-DE",{minimumFractionDigits:d,maximumFractionDigits:d});return nf[k].format(Math.abs(n)<0.005&&d<=2?0:n);}
+const eur=(n,d=0)=>n==null||isNaN(n)?"–":de(n,d)+" €";
+const pc=(n,d=1)=>n==null||isNaN(n)?"–":de(n*100,d)+" %";
+const cls=n=>n<-0.004?"neg":"";
+function fmtIn(v,p){if(v==null||v==="")return "";if(typeof v!=="number")return String(v);return new Intl.NumberFormat("de-DE",{maximumFractionDigits:6,useGrouping:!(p&&/(^jahre\.|Jahr$|\.jahr$|vwHalbBis)/.test(p))}).format(v);}
+function parseDe(s){s=String(s).trim().replace(/\s|€|%/g,"");if(s==="")return null;if(s.includes(","))s=s.replace(/\./g,"").replace(",",".");else if(/^-?\d{1,3}(\.\d{3})+$/.test(s))s=s.replace(/\./g,"");const n=parseFloat(s);return isNaN(n)?null:n;}
+function getP(o,p){return p.split(".").reduce((a,k)=>a==null?a:a[k],o);}
+function setP(o,p,v){const ks=p.split(".");const last=ks.pop();const t=ks.reduce((a,k)=>a[k],o);t[last]=v;}
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ymAdd=(ym,k)=>{let [y,m]=ym.split("-").map(Number);m+=k;y+=Math.floor((m-1)/12);m=((m-1)%12+12)%12+1;return y+"-"+String(m).padStart(2,"0");};
+const ymY=ym=>+ym.slice(0,4), ymM=ym=>+ym.slice(5,7);
+const ymLabel=ym=>MON[ymM(ym)-1]+" "+ymY(ym);
+const okYm=s=>/^\d{4}-\d{2}$/.test(s||"");
+
+/* ---------- Einkommensteuer 2026 (§ 32a EStG, Fassung StFoG) ---------- */
+function estGrund(x){x=Math.floor(Math.max(0,x));let e;
+  if(x<=12348)e=0;
+  else if(x<=17799){const y=(x-12348)/1e4;e=(914.51*y+1400)*y;}
+  else if(x<=69878){const z=(x-17799)/1e4;e=(173.10*z+2397)*z+1034.87;}
+  else if(x<=277825)e=0.42*x-11135.63;
+  else e=0.45*x-19470.38;
+  return Math.floor(e);}
+function steuer(zve){
+  const sp=!!S.so.splitting, f=x=>sp?2*estGrund(Math.floor(x/2)):estGrund(x);
+  const est=f(zve); const fg=sp?40700:20350;
+  const soli=est<=fg?0:Math.round(Math.min(0.055*est,0.119*(est-fg))*100)/100;
+  const kist=Math.round(est*(+S.so.kist||0))/100;
+  const grenz=(f(zve+100)-est)/100;
+  return {est,soli,kist,sum:est+soli+kist,avg:zve>0?est/zve:0,grenz};
+}
+
+/* ---------- Gesamtmodell ---------- */
+function compute(opt={}){
+  const M={}; const G=S.ges, n=S.jahre.length, l3=[n-3,n-2,n-1].filter(i=>i>=0);
+  M.ges=G.map(g=>{const ur=g.umsatz.map((u,i)=>u?g.gewinn[i]/u:null);
+    return {ur,avgU:avg(l3.map(i=>g.umsatz[i])),avgG:avg(l3.map(i=>g.gewinn[i])),avgUR:avg(l3.map(i=>ur[i])),lastG:+g.gewinn[n-1]||0};});
+  M.hon=sum(M.ges.map(g=>g.avgU));
+  const k=S.kp;
+  M.szen=[{id:"min",name:"Minimum",f:"× "+de(k.mMin,2),kp:M.hon*k.mMin},{id:"max",name:"Maximum",f:"× "+de(k.mMax,2),kp:M.hon*k.mMax},
+          {id:"hoch",name:"Erhöht",f:"× "+de(k.mHoch,2),kp:M.hon*k.mHoch},{id:"verh",name:"Verhandelt",f:eur(k.verhBasis)+" × "+de(k.verhFaktor,2),kp:k.verhBasis*k.verhFaktor}];
+  M.ansatz=opt.ansatz||k.ansatz;
+  M.kaufpreis=(M.szen.find(s=>s.id===M.ansatz)||M.szen[3]).kp;
+  M.praxiswert=M.kaufpreis*k.anteil/100;
+  // Gewinnverteilung
+  const gv=S.gv;
+  M.gewBasis=G.map((g,i)=>gv.basis==="avg3"?M.ges[i].avgG:M.ges[i].lastG);
+  M.korr=sum(gv.korrekturen.map(x=>x.betrag));
+  M.gewinn=sum(M.gewBasis)+M.korr;
+  M.tvGes=gv.partner*gv.tv; M.restGes=M.gewinn-M.tvGes; M.meinRest=M.restGes*gv.quote/100; M.anteil=gv.tv+M.meinRest;
+  // Darlehen
+  const d=S.dl; M.darlehen=Math.max(0,M.praxiswert-(+d.ek||0));
+  const lz=Math.max(1,Math.round(d.laufzeit||1)), tf=Math.max(0,Math.round(d.tf||0)), r=+d.rhythmus||3;
+  M.tilgMtl=M.darlehen/Math.max(1,lz-tf);
+  const st=okYm(d.start)?d.start:"2027-01";
+  const sond={};(d.sonder||[]).forEach(s=>{if(s.nr)sond[Math.round(s.nr)]=(sond[Math.round(s.nr)]||0)+(+s.betrag||0);});
+  M.plan=[];let b=M.darlehen;
+  for(let m=1;m<=lz&&b>0.005;m++){const ym=ymAdd(st,m-1);const due=m%r===0;
+    const zins=due?b*d.zins/100/12*r:0;let tilg=(due&&m>tf?M.tilgMtl*r:0)+(sond[m]||0);
+    if(m===lz)tilg=b; tilg=Math.min(tilg,b);
+    M.plan.push({nr:m,ym,anf:b,zins,tilg,rate:zins+tilg,end:b-tilg});b-=tilg;}
+  M.planBy={};M.loanY={};M.plan.forEach(p=>{M.planBy[p.ym]=p;const y=ymY(p.ym);(M.loanY[y]=M.loanY[y]||{zins:0,tilg:0});M.loanY[y].zins+=p.zins;M.loanY[y].tilg+=p.tilg;});
+  M.zinsGes=sum(M.plan.map(p=>p.zins));
+  M.ende=M.plan.length?M.plan[M.plan.length-1].ym:st;
+  M.rateReg=M.tilgMtl*r+(M.darlehen*d.zins/100/12*r);
+  // Jahre
+  const L=S.liq, ein=okYm(L.eintritt)?L.eintritt:"2027-01"; M.EY=ymY(ein); const em=ymM(ein);
+  const actM=Y=>Y<M.EY?0:(Y===M.EY?13-em:12);
+  const nd=Math.max(1,+k.nd||10);
+  const afaY=Y=>{let c=0;for(let mo=1;mo<=12;mo++){const off=(Y-M.EY)*12+(mo-em);if(off>=0&&off<nd*12)c++;}return M.praxiswert/(nd*12)*c;};
+  M.yr=Y=>{const f=actM(Y)/12;const tv=gv.tv*f,rest=M.meinRest*f,ant=tv+rest;const afa=afaY(Y);const ly=M.loanY[Y]||{zins:0,tilg:0};
+    const eink=ant-afa-ly.zins;const vw=S.so.vw*f,kvA=S.so.kvAbzug*f;const zve=Math.max(0,Math.floor(eink-vw-kvA));const t=steuer(zve);
+    const kv=S.so.kvBeitrag*f;const netto=ant-ly.zins-ly.tilg-vw-kv-t.sum;
+    return {Y,f,tv,rest,ant,afa,zins:ly.zins,tilg:ly.tilg,eink,vw,kvA,kv,zve,t,netto};};
+  M.years=[];for(let Y=M.EY;Y<M.EY+Math.max(10,Math.ceil(lz/12)+1);Y++)M.years.push(M.yr(Y));
+  // Netto-Rechner (nur Tätigkeitsvergütung, erstes volles Jahr)
+  {const y1=M.yr(M.EY+(em>1?1:0));const nr=S.nr;const vwA=S.so.vw*nr.vwAnteil/100;
+   const zve=gv.tv+(+nr.rest||0)-y1.afa-y1.zins-vwA-S.so.kvAbzug;const t=steuer(Math.max(0,zve));
+   const nachSt=zve-t.est-t.soli-t.kist;const kvD=S.so.kvBeitrag-S.so.kvAbzug;
+   const jahr=nachSt+y1.afa-kvD-(+nr.tilgung||0)-(+nr.rest||0);
+   M.nr={Y:y1.Y,tv:gv.tv,rest:+nr.rest||0,afa:y1.afa,zins:y1.zins,vwA,kvA:S.so.kvAbzug,zve,t,nachSt,kvD,tilg:+nr.tilgung||0,jahr,mtl:jahr/12};}
+  // Liquidität
+  M.liq=liquiditaet(M);
+  return M;
+}
+
+const LCOLS=[
+  {k:"tv",n:"Tätigkeits­vergütung",io:1},{k:"ent",n:"Entnahme",io:1},{k:"kd",n:"Entnahme Kapitaldienst",io:1},{k:"rg",n:"Entnahme Restgewinn",io:1},
+  {k:"tilg",n:"Tilgung",io:-1},{k:"zins",n:"Zinsen",io:-1},{k:"vw",n:"Versorgungs­werk",io:-1},{k:"kv",n:"Kranken­versicherung",io:-1},{k:"est",n:"ESt / Soli",io:-1}];
+function liquiditaet(M){
+  const L=S.liq, ov=L.ov||{}, ein=okYm(L.eintritt)?L.eintritt:"2027-01", st=okYm(L.start)?L.start:"2026-01";
+  const n=Math.min(180,Math.max(1,Math.round(L.monate||48)));
+  const cols=LCOLS.concat((L.wied||[]).map(w=>({k:w.id,n:w.label||"Ausgabe",io:-1})));
+  const yrTax={};const tax=Y=>(yrTax[Y]??=M.yr(Y).t.sum);
+  const vzMon=[3,6,9,12];
+  const rows=[];for(let i=0;i<n;i++)rows.push({ym:ymAdd(st,i)});
+  const byY={};rows.forEach(r=>{(byY[ymY(r.ym)]=byY[ymY(r.ym)]||[]).push(r);});
+  const vzPaid={},nachz={};
+  const val=(r,k,auto)=>{const key=r.ym+"|"+k;const has=Object.prototype.hasOwnProperty.call(ov,key)&&ov[key]!==null&&ov[key]!=="";r.auto=r.auto||{};r.auto[k]=auto;r.isOv=r.isOv||{};r.isOv[k]=has;return has?+ov[key]:auto;};
+  for(const Y of Object.keys(byY).map(Number).sort()){
+    const rs=byY[Y];
+    // Nachzahlung für Vorjahr
+    let nz=0; if(Y>M.EY){const paid=vzPaid[Y-1]!=null?vzPaid[Y-1]:(Y-1===M.EY?4*(+L.vzErst||0):tax(Y-1));nz=tax(Y-1)-paid;}
+    nachz[Y]=nz;
+    rs.forEach(r=>{const ym=r.ym,mo=ymM(ym),act=ym>=ein,p=M.planBy[ym];r.v={};
+      r.v.tv=val(r,"tv",act?S.gv.tv/12:0);
+      r.v.ent=val(r,"ent",okYm(L.entAb)&&ym>=L.entAb?(+L.entMtl||0):0);
+      r.v.tilg=val(r,"tilg",p?p.tilg:0);
+      r.v.zins=val(r,"zins",p?p.zins:0);
+      r.v.kd=val(r,"kd",L.kdAuto&&act&&Y>M.EY?Math.round((r.v.tilg+r.v.zins)/100)*100:0);
+      r.v.vw=val(r,"vw",act?S.so.vw/12*(Y<=L.vwHalbBis?L.vwHalbAnteil/100:1):0);
+      r.v.kv=val(r,"kv",act?S.so.kvBeitrag/12:0);
+      let est=0;if(act){if(Y===M.EY){if(vzMon.includes(mo))est=+L.vzErst||0;}else{if(vzMon.includes(mo))est+=tax(Y)/4;if(mo===+L.nzMonat)est+=nz;}}
+      r.v.est=val(r,"est",est);
+      (L.wied||[]).forEach(w=>{r.v[w.id]=val(r,w.id,(okYm(w.ab)?ym>=w.ab:true)&&(!okYm(w.bis)||ym<=w.bis)?(+w.betrag||0):0);});
+      r.note=ov[ym+"|note"]||"";
+    });
+    vzPaid[Y]=sum(rs.map(r=>r.v.est))-(Y>M.EY&&rs.some(r=>ymM(r.ym)===+L.nzMonat&&!r.isOv.est)?nz:0);
+    // Restgewinn-Entnahmen (Gewinn des Vorjahres)
+    const restVJ=M.meinRest*(Y-1<M.EY?0:(Y-1===M.EY?(13-ymM(ein))/12:1));
+    const nzPos=Math.max(0,nz);
+    const kdS=sum(rs.map(r=>r.v.kd)), entS=sum(rs.map(r=>r.v.ent));
+    const q=(restVJ-nzPos-kdS-entS)/4;
+    rs.forEach(r=>{const mo=ymM(r.ym);let a=0;if(L.rgAuto&&Y>M.EY&&restVJ>0){if(mo===+L.nzMonat)a+=nzPos;if(vzMon.includes(mo))a+=q;}r.v.rg=val(r,"rg",a);});
+  }
+  let bal=+L.saldo||0,spar=0,min={v:Infinity,ym:null};
+  rows.forEach(r=>{r.in=sum(cols.filter(c=>c.io>0).map(c=>r.v[c.k]));r.out=sum(cols.filter(c=>c.io<0).map(c=>r.v[c.k]));r.liq=r.in-r.out;
+    r.v.spar=val(r,"spar",okYm(L.sparAb)&&r.ym>=L.sparAb?(+L.spar||0):0);bal+=r.liq-r.v.spar;spar+=r.v.spar;r.bal=bal;r.sparKum=spar;
+    if(bal<min.v)min={v:bal,ym:r.ym};});
+  return {rows,cols,byY,nachz,end:bal,spar,min};
+}
+
+/* ---------- Fahrzeug ---------- */
+function kfz(v){const g=S.kfz,fac={V:1,H:0.5,E:0.25}[v.typ]||1;
+  const pct1=v.blp*0.01*fac,jahr=pct1*12,afa=v.blp/1.19/(+g.afaJ||6);
+  const lfd=v.km/100*v.l*v.lp+v.km/100*v.kwh*v.kp,rep=v.km*v.wart;
+  const sumU=(+v.leas||0)+afa+lfd+rep;const ust=Math.min(jahr*0.8,sumU/2);const frei=ust-jahr;
+  const r=v.zins/100,nper=Math.max(1,v.lz);const ann=r?v.dar*r/(1-Math.pow(1+r,-nper)):v.dar/nper;const z1=v.dar*r,t1=ann-z1;
+  const kost=(+v.leas||0)+afa+(+v.st||0)+(+v.ver||0)+lfd+rep+z1+(+v.sonst||0);const maxFrei=kost-ust;
+  const fwa=v.blp*fac*0.0003*g.entf*12,pausch=g.pausch*g.entf*g.tage;
+  const nwFrei=Math.min(-frei,maxFrei);const einn=ust+nwFrei+fwa;
+  const ausg=(+v.leas||0)+afa+(+v.st||0)+(+v.ver||0)+lfd+rep+z1+(+v.sonst||0)+pausch;const erg=einn-ausg;
+  const liq=-((+v.leas||0)+(+v.st||0)+(+v.ver||0)+lfd+rep+z1+(+v.sonst||0));const ersp=-erg*g.satz/100;
+  return {fac,pct1,jahr,afa,lfd,rep,sumU,ust,ustBr:ust*1.19,frei,kost,maxFrei,fwa,pausch,fwaSaldo:fwa-pausch,nwFrei,einn,ausg,erg,liq,tilg:-t1,z1,ersp,saldo:liq-t1+ersp};}
+
+/* ---------- Hochrechnung ---------- */
+function hochrechnung(){
+  const U=S.ums;const yrs=Object.keys(U.vgl).sort();
+  const share={};yrs.forEach(y=>{const t=sum(U.vgl[y]);share[y]=U.vgl[y].map(x=>t?(+x||0)/t:0);});
+  const avgS=MON.map((_,i)=>avg(yrs.map(y=>share[y][i])));
+  const filled=U.umsatz.map(x=>x!=null&&x!=="");const nM=filled.filter(Boolean).length;
+  const ist=sum(U.umsatz.filter((x,i)=>filled[i]));const vj=U.vgl[String(U.jahr-1)]||U.vgl[yrs[yrs.length-1]];const vjSum=sum(vj);
+  const vjBis=sum(vj.filter((x,i)=>filled[i]));const sAnteil=sum(avgS.filter((x,i)=>filled[i]));
+  const hoch=sAnteil?ist/sAnteil:0;
+  const gew=sum(U.gewinn.filter((x,i)=>filled[i]&&x!=null)),korr=nM*(+U.korrektur||0),gewK=gew+korr;
+  const tv=S.gv.tv/12*S.gv.partner*nM,rest=gewK-tv,meinAnteil=S.gv.tv/12*nM+rest*S.gv.quote/100;
+  const gewHoch=ist?gewK/ist*hoch:0;
+  return {yrs,share,avgS,filled,nM,ist,vjSum,vjBis,sAnteil,hoch,gew,korr,gewK,tv,rest,meinAnteil,gewHoch,zielQ:vjSum?ist/vjSum:0};
+}
+
+/* ---------- Eingabebausteine ---------- */
+function F(label,path,o={}){const v=getP(S,path);const id="i-"+path.replace(/\./g,"-");
+  const inp=o.type==="month"?`<input type="month" id="${id}" data-path="${path}" data-type="text" value="${esc(v)}">`
+    :o.text?`<input id="${id}" data-path="${path}" data-type="text" value="${esc(v)}">`
+    :`<input id="${id}" data-path="${path}" inputmode="decimal" value="${fmtIn(v,path)}" autocomplete="off">`;
+  return `<label class="f" for="${id}"><span class="fl">${label}${o.hint?`<small>${o.hint}</small>`:""}</span><span class="fi">${inp}<em>${o.unit||""}</em></span></label>`;}
+function Sel(label,path,opts,o={}){const v=String(getP(S,path));const id="i-"+path.replace(/\./g,"-");
+  return `<label class="f" for="${id}"><span class="fl">${label}${o.hint?`<small>${o.hint}</small>`:""}</span><span class="fi"><select id="${id}" data-path="${path}" ${o.num?'data-type="num"':""}>${opts.map(([val,t])=>`<option value="${esc(val)}" ${String(val)===v?"selected":""}>${esc(t)}</option>`).join("")}</select><em></em></span></label>`;}
+function Chk(label,path){const id="i-"+path.replace(/\./g,"-");return `<label class="chk" for="${id}"><input type="checkbox" id="${id}" data-path="${path}" data-type="bool" ${getP(S,path)?"checked":""}> ${label}</label>`;}
+function cellIn(path,o={}){const v=getP(S,path);const id="i-"+path.replace(/\./g,"-");
+  return o.text?`<input id="${id}" data-path="${path}" data-type="text" value="${esc(v)}" aria-label="${esc(o.aria||path)}">`
+                 :`<input id="${id}" data-path="${path}" inputmode="decimal" value="${fmtIn(v,path)}" aria-label="${esc(o.aria||path)}" autocomplete="off">`;}
+const out=(id)=>`<div id="o-${id}"></div>`;
+const put=(id,html)=>{const el=document.getElementById("o-"+id);if(el)el.innerHTML=html;};
+function kpi(l,v,s,hl){return `<div class="kpi${hl?" hl":""}"><div class="l">${l}</div><div class="v">${v}</div>${s?`<div class="s">${s}</div>`:""}</div>`;}
+function trow(label,val,o={}){return `<tr class="${o.cls||""}"><td class="t">${label}</td><td class="${cls(val)}">${o.raw?val:eur(val,o.d??0)}</td></tr>`;}
+
+/* ---------- Diagramme (SVG) ---------- */
+function ticks(min,max,n=5){if(min===max){max=min+1;}const span=max-min,step0=span/n,mag=Math.pow(10,Math.floor(Math.log10(step0))),err=step0/mag;
+  const step=(err>=7.5?10:err>=3.5?5:err>=1.5?2:1)*mag;const t=[];for(let v=Math.floor(min/step)*step;v<=max+step*0.001;v+=step)t.push(Math.round(v*1e6)/1e6);
+  if(t[t.length-1]<max)t.push(t[t.length-1]+step);return t;}
+const kfmt=v=>Math.abs(v)>=1e6?de(v/1e6,1)+" Mio":Math.abs(v)>=1e3?de(v/1e3,0)+" T":de(v,0);
+function lineChart(series,labels,o={}){
+  const W=860,H=o.h||240,pl=58,pr=14,pt=12,pb=26;const all=series.flatMap(s=>s.data).concat(o.zero?[0]:[]);
+  let mn=Math.min(...all),mx=Math.max(...all);const tk=ticks(mn,mx,5);mn=tk[0];mx=tk[tk.length-1];
+  const x=i=>pl+(labels.length<=1?0:i*(W-pl-pr)/(labels.length-1)),y=v=>pt+(mx-v)/(mx-mn||1)*(H-pt-pb);
+  let g=tk.map(t=>`<line x1="${pl}" x2="${W-pr}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)" stroke-width="1" ${t===0?'':'stroke-dasharray="2 3"'}/><text x="${pl-6}" y="${y(t)+4}" text-anchor="end">${kfmt(t)}</text>`).join("");
+  const every=Math.max(1,Math.ceil(labels.length/12));
+  g+=labels.map((l,i)=>i%every===0?`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${esc(l)}</text>`:"").join("");
+  series.forEach(s=>{const pts=s.data.map((v,i)=>`${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+    if(s.area){g+=`<polygon points="${x(0)},${y(Math.max(mn,0))} ${pts} ${x(s.data.length-1)},${y(Math.max(mn,0))}" fill="${s.color}" fill-opacity=".12" stroke="none"/>`;}
+    if(s.bars){const bw=Math.max(2,(W-pl-pr)/labels.length*0.6);g+=s.data.map((v,i)=>`<rect x="${x(i)-bw/2}" y="${Math.min(y(v),y(0))}" width="${bw}" height="${Math.abs(y(v)-y(0))}" fill="${s.color}" fill-opacity="${s.op||.85}"/>`).join("");}
+    else g+=`<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round"/>`;
+    if(s.end&&s.data.length){const i=s.data.length-1;g+=`<circle cx="${x(i)}" cy="${y(s.data[i])}" r="4" fill="${s.color}"/>`;}
+    if(s.mark!=null){g+=`<circle cx="${x(s.mark)}" cy="${y(s.data[s.mark])}" r="4.5" fill="var(--surface)" stroke="var(--neg)" stroke-width="2"/>`;}
+  });
+  return `<div class="chart tw"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.aria||"Diagramm")}">${g}</svg></div>`+
+    (series.length>1||o.legend?`<div class="legend">${series.map(s=>`<span><i style="background:${s.color}"></i>${esc(s.name)}</span>`).join("")}</div>`:"");}
+
+/* ---------- Reiter ---------- */
+const TABS=[
+ {id:"uebersicht",n:"Übersicht"},{id:"kaufpreis",n:"Kaufpreis"},{id:"steuer",n:"Einkünfte & Steuer"},{id:"darlehen",n:"Darlehen"},
+ {id:"liquiditaet",n:"Liquidität"},{id:"hochrechnung",n:"Hochrechnung"},{id:"fahrzeug",n:"Fahrzeug"},{id:"giro",n:"Girokonto"}];
+let M=compute();
+
+const V={};
+/* Übersicht */
+V.uebersicht={render(){return `
+  <h2>Übersicht</h2><p class="lead">Die wichtigsten Ergebnisse auf einen Blick. Alle Werte folgen aus den Eingaben in den anderen Reitern.</p>
+  <div class="stack">${out("kpis")}
+  <div class="card"><div class="spread"><h3 style="margin:0">Jahresübersicht ab Eintritt</h3><span class="mut" style="font-size:12px">Gewinn konstant fortgeschrieben, Zinsen und AfA je Jahr</span></div>${out("jahre")}</div>
+  <div class="card"><h3>Kontostand Girokonto laut Liquiditätsplan</h3>${out("chart")}</div>
+  <div class="card"><h3>Kaufpreis-Szenarien im Vergleich</h3>${out("szen")}</div>
+  <p class="note-box">Unterschiede zur Excel-Mappe: Die Einkommensteuer wird hier exakt nach § 32a EStG 2026 gerechnet statt über den Durchschnittssteuersatz aus der Grundtabelle. Der Solidaritätszuschlag berücksichtigt Freigrenze und Milderungszone. Zinsen und AfA werden je Jahr angesetzt.</p></div>`;},
+ update(){const y1=M.years[0],y2=M.years[1]||y1;const L=M.liq;
+  put("kpis",`<div class="kpis">${kpi("Kaufpreis Kanzlei",eur(M.kaufpreis),M.szen.find(s=>s.id===M.ansatz).name)}${kpi("Dein Anteil (Praxiswert)",eur(M.praxiswert),de(S.kp.anteil,2)+" % · Darlehen "+eur(M.darlehen),true)}
+   ${kpi("Gewinnanteil p. a.",eur(M.anteil),"TV "+eur(S.gv.tv)+" + Rest "+eur(M.meinRest))}${kpi("zvE "+y1.Y,eur(y1.zve),"Ø "+pc(y1.t.avg)+" · Grenz "+pc(y1.t.grenz,0))}
+   ${kpi("Netto mtl. "+y2.Y,eur(y2.netto/12),"nach Steuern, Kapitaldienst, Vorsorge",true)}${kpi("Kontostand "+ymLabel(L.rows[L.rows.length-1].ym),`<span class="${cls(L.end)}">${eur(L.end)}</span>`,"Tiefstand "+eur(L.min.v)+" ("+ymLabel(L.min.ym)+")")}</div>`);
+  const ys=M.years;const r=(l,f,o={})=>`<tr class="${o.c||""}"><td>${l}</td>${ys.map(y=>`<td class="${cls(f(y))}">${o.p?pc(f(y)):eur(f(y))}</td>`).join("")}</tr>`;
+  put("jahre",`<div class="tw"><table><thead><tr><th>Jahr</th>${ys.map(y=>`<th>${y.Y}</th>`).join("")}</tr></thead><tbody>
+   ${r("Gewinnanteil",y=>y.ant)}${r("./. AfA Praxiswert",y=>-y.afa,{c:"minus"})}${r("./. Zinsen",y=>-y.zins,{c:"minus"})}${r("Einkünfte § 18",y=>y.eink,{c:"sub"})}
+   ${r("zvE",y=>y.zve)}${r("ESt + Soli + KiSt",y=>-y.t.sum,{c:"minus"})}${r("Ø-Steuersatz",y=>y.t.avg,{p:1})}${r("Kapitaldienst",y=>-(y.zins+y.tilg),{c:"minus"})}
+   ${r("Netto p. a.",y=>y.netto,{c:"sub"})}${r("Netto mtl.",y=>y.netto/12,{c:"sum"})}</tbody></table></div>`);
+  put("chart",lineChart([{name:"Kontostand",data:L.rows.map(x=>x.bal),color:"var(--accent)",area:1,end:1,mark:L.rows.findIndex(x=>x.ym===L.min.ym)},{name:"Sparkonto (kumuliert)",data:L.rows.map(x=>x.sparKum),color:"var(--warn)"}],L.rows.map(x=>MON[ymM(x.ym)-1]+" "+String(ymY(x.ym)).slice(2)),{zero:1,aria:"Kontostand je Monat"}));
+  const sc=M.szen.map(s=>{const m=compute({ansatz:s.id});return {s,m,y1:m.years[0],y2:m.years[1]||m.years[0]};});
+  put("szen",`<div class="tw"><table><thead><tr><th>Szenario</th><th>Kaufpreis</th><th>Praxiswert</th><th>AfA p. a.</th><th>Zinsen ${M.EY}</th><th>Steuern ${M.EY}</th><th>Netto mtl. ${M.EY+1}</th><th>Kontostand Ende</th></tr></thead><tbody>
+   ${sc.map(({s,m,y1,y2})=>`<tr class="${s.id===M.ansatz?"best":""}"><td>${s.name} <span class="mut">${s.f}</span>${s.id===M.ansatz?' <span class="pill">aktiv</span>':""}</td><td>${eur(s.kp)}</td><td>${eur(m.praxiswert)}</td><td>${eur(y1.afa)}</td><td>${eur(y1.zins)}</td><td>${eur(y1.t.sum)}</td><td>${eur(y2.netto/12)}</td><td class="${cls(m.liq.end)}">${eur(m.liq.end)}</td></tr>`).join("")}</tbody></table></div>`);
+ }};
+
+/* Kaufpreis */
+V.kaufpreis={render(){const J=S.jahre;return `
+  <h2>Kaufpreis der Beteiligung</h2><p class="lead">Honorardurchschnitt der letzten drei Jahre aller Gesellschaften × Multiplikator. Der gewählte Ansatz bestimmt Praxiswert, Ergänzungsbilanz und Darlehen.</p>
+  <div class="stack">
+  <div class="card"><h3>Umsatz und Gewinn je Gesellschaft</h3><div class="tw"><table class="in"><thead>
+   <tr><th rowspan="2">Jahr</th>${S.ges.map((g,i)=>`<th colspan="3" style="text-align:center">${cellIn("ges."+i+".name",{text:1,aria:"Name Gesellschaft"})}</th>`).join("")}</tr>
+   <tr>${S.ges.map(()=>"<th>Umsatz</th><th>Gewinn</th><th>UR</th>").join("")}</tr></thead><tbody>
+   ${J.map((y,j)=>`<tr><td>${cellIn("jahre."+j,{aria:"Jahr"})}</td>${S.ges.map((g,i)=>`<td>${cellIn(`ges.${i}.umsatz.${j}`,{aria:g.name+" Umsatz "+y})}</td><td>${cellIn(`ges.${i}.gewinn.${j}`,{aria:g.name+" Gewinn "+y})}</td><td id="o-ur-${i}-${j}"></td>`).join("")}</tr>`).join("")}
+   </tbody><tfoot id="o-kpavg"></tfoot></table></div></div>
+  <div class="cols"><div class="stack"><div class="card"><h3>Multiplikatoren</h3>
+   ${F("Minimum","kp.mMin",{unit:"×"})}${F("Maximum","kp.mMax",{unit:"×"})}${F("Erhöht","kp.mHoch",{unit:"×"})}
+   ${F("Verhandelter Basiswert","kp.verhBasis",{unit:"€"})}${F("Faktor verhandelt","kp.verhFaktor",{unit:"×",hint:"„Kaufpreis MS“"})}</div>
+   <div class="card"><h3>Dein Anteil</h3>${F("Anteil am Kaufpreis","kp.anteil",{unit:"%",hint:"Praxiswert = Kaufpreis × Anteil"})}${F("Nutzungsdauer Praxiswert","kp.nd",{unit:"J.",hint:"üblich 6–10 Jahre"})}</div></div>
+  <div class="stack"><div class="card"><h3>Ansatz wählen</h3>${out("szen")}</div><div class="card"><h3>Ergänzungsbilanz</h3>${out("erg")}</div></div></div></div>`;},
+ update(){const n=S.jahre.length;
+  S.ges.forEach((g,i)=>S.jahre.forEach((y,j)=>{const el=document.getElementById(`o-ur-${i}-${j}`);if(el){el.textContent=pc(M.ges[i].ur[j]);el.className="mut "+(M.ges[i].ur[j]<0?"neg":"");el.style.padding="4px 8px";}}));
+  const tf=document.getElementById("o-kpavg");if(tf)tf.innerHTML=`<tr class="sub"><td style="padding:5px 8px">Ø ${S.jahre[Math.max(0,n-3)]}–${S.jahre[n-1]}</td>${M.ges.map(g=>`<td style="padding:5px 8px">${eur(g.avgU)}</td><td style="padding:5px 8px" class="${cls(g.avgG)}">${eur(g.avgG)}</td><td style="padding:5px 8px">${pc(g.avgUR)}</td>`).join("")}</tr>
+   <tr class="sum"><td style="padding:5px 8px">Honorarbasis</td><td colspan="${M.ges.length*3}" style="padding:5px 8px">${eur(M.hon)}</td></tr>`;
+  put("szen",`<div class="scen">${M.szen.map(s=>`<button class="sc" data-action="ansatz:${s.id}" aria-pressed="${s.id===M.ansatz}"><div class="n">${s.name} · ${s.f}</div><div class="k">${eur(s.kp)}</div><div class="p">Dein Anteil: <b>${eur(s.kp*S.kp.anteil/100)}</b></div></button>`).join("")}</div>`);
+  const afa=M.praxiswert/Math.max(1,S.kp.nd);
+  put("erg",`<table><tbody>${trow("Kaufpreis Kanzlei ("+M.szen.find(s=>s.id===M.ansatz).name+")",M.kaufpreis)}${trow("× Anteil "+de(S.kp.anteil,2)+" %",M.praxiswert,{cls:"sub"})}
+   ${trow("Nutzungsdauer",de(S.kp.nd)+" Jahre",{raw:1})}${trow("AfA Praxiswert p. a.",afa,{cls:"sum"})}</tbody></table>`);
+ }};
+
+/* Einkünfte & Steuer */
+V.steuer={render(){return `
+  <h2>Einkünfte nach § 18 EStG und Steuer</h2><p class="lead">Gewinnverteilung der Partnerschaft, Abzug von Ergänzungs- und Sonderbilanz, Sonderausgaben und Einkommensteuer nach Tarif 2026.</p>
+  <div class="cols"><div class="stack">
+   <div class="card"><h3>Gewinnverteilung</h3>${Sel("Gewinnbasis","gv.basis",[["last","Letztes Jahr ("+S.jahre[S.jahre.length-1]+")"],["avg3","Ø der letzten 3 Jahre"]])}
+    ${F("Anzahl Partner","gv.partner")}${F("Tätigkeitsvergütung je Partner","gv.tv",{unit:"€",hint:"pro Jahr"})}${F("Beteiligungsquote am Restgewinn","gv.quote",{unit:"%"})}
+    <h3 style="margin-top:14px">Korrekturen zum Gewinn</h3><div class="lst">${S.gv.korrekturen.map((x,i)=>`<div class="it">${cellIn(`gv.korrekturen.${i}.label`,{text:1,aria:"Bezeichnung"})}${cellIn(`gv.korrekturen.${i}.betrag`,{aria:"Betrag"})}<button class="x" data-action="del:gv.korrekturen:${i}" aria-label="Entfernen">×</button></div>`).join("")}</div>
+    <button class="btn small" style="margin-top:8px" data-action="add:gv.korrekturen">+ Korrektur</button></div>
+   <div class="card"><h3>Sonderausgaben & Vorsorge</h3>${F("Versorgungswerk p. a.","so.vw",{unit:"€"})}${F("Krankenversicherung abzugsfähig","so.kvAbzug",{unit:"€",hint:"p. a., Basisabsicherung"})}
+    ${F("Krankenversicherung gezahlt","so.kvBeitrag",{unit:"€",hint:"p. a. inkl. Stundung, für Liquidität"})}</div>
+   <div class="card"><h3>Veranlagung</h3>${Chk("Zusammenveranlagung (Splitting)","so.splitting")}${Sel("Kirchensteuer","so.kist",[["0","keine"],["8","8 %"],["9","9 %"]],{num:1})}</div>
+   <div class="card"><h3>Netto-Rechner: nur Tätigkeitsvergütung</h3>${F("Restgewinn ansetzen","nr.rest",{unit:"€"})}${F("Tilgung aus Privat","nr.tilgung",{unit:"€",hint:"p. a."})}${F("Anteil Versorgungswerk","nr.vwAnteil",{unit:"%"})}</div>
+  </div><div class="stack">
+   <div class="card"><div class="spread"><h3 style="margin:0">Berechnung</h3>${out("ysel")}</div>${out("schema")}</div>
+   <div class="card"><h3>Netto-Rechner</h3>${out("nr")}</div></div></div>`;},
+ update(){const ys=M.years;let Y=S.ui.jahr;if(!ys.find(y=>y.Y===Y))Y=ys[0].Y;const y=ys.find(z=>z.Y===Y);
+  put("ysel",`<select id="i-ui-jahr" data-path="ui.jahr" data-type="num" aria-label="Jahr" style="width:auto">${ys.map(z=>`<option value="${z.Y}" ${z.Y===Y?"selected":""}>${z.Y}</option>`).join("")}</select>`);
+  const f=y.f<1?` <span class="pill warn">${Math.round(y.f*12)} Monate</span>`:"";
+  put("schema",`<table><tbody>
+   ${trow("Gewinn der Gesellschaften",sum(M.gewBasis))}${trow("+ Korrekturen",M.korr,{cls:"minus"})}${trow("Gewinn gesamt",M.gewinn,{cls:"sub"})}
+   ${trow("./. Tätigkeitsvergütungen ("+de(S.gv.partner)+" × "+eur(S.gv.tv)+")",-M.tvGes,{cls:"minus"})}${trow("Restgewinn gesamt",M.restGes,{cls:"sub"})}
+   <tr><td colspan="2" style="border:none;padding-top:14px"><h3 style="margin:0">Dein Anteil ${Y}${f}</h3></td></tr>
+   ${trow("Tätigkeitsvergütung",y.tv)}${trow("Restgewinn × "+de(S.gv.quote,3)+" %",y.rest)}${trow("Gewinnanteil",y.ant,{cls:"sub"})}
+   ${trow("./. Ergänzungsbilanz (AfA Praxiswert)",-y.afa,{cls:"minus"})}${trow("./. Sonderbilanz (Darlehenszinsen)",-y.zins,{cls:"minus"})}${trow("Einkünfte § 18 EStG",y.eink,{cls:"sub"})}
+   ${trow("./. Versorgungswerk",-y.vw,{cls:"minus"})}${trow("./. Krankenversicherung",-y.kvA,{cls:"minus"})}${trow("Zu versteuerndes Einkommen",y.zve,{cls:"sub"})}
+   ${trow("Einkommensteuer"+(S.so.splitting?" (Splitting)":" (Grundtabelle)"),y.t.est)}${trow("Solidaritätszuschlag",y.t.soli,{d:2})}${+S.so.kist?trow("Kirchensteuer",y.t.kist,{d:2}):""}
+   ${trow("Steuern gesamt",y.t.sum,{cls:"sub",d:2})}${trow("Durchschnitt / Grenzsteuersatz",pc(y.t.avg,2)+" / "+pc(y.t.grenz,0),{raw:1})}
+   <tr><td colspan="2" style="border:none;padding-top:14px"><h3 style="margin:0">Liquidität ${Y}</h3></td></tr>
+   ${trow("Gewinnanteil",y.ant)}${trow("./. Kapitaldienst (Zins + Tilgung)",-(y.zins+y.tilg),{cls:"minus"})}${trow("./. Versorgungswerk",-y.vw,{cls:"minus"})}
+   ${trow("./. Krankenversicherung (gezahlt)",-y.kv,{cls:"minus"})}${trow("./. Steuern",-y.t.sum,{cls:"minus",d:2})}${trow("Verfügbar p. a.",y.netto,{cls:"sub"})}${trow("Netto mtl.",y.netto/12,{cls:"sum"})}</tbody></table>`);
+  const n=M.nr;put("nr",`<p class="mut" style="margin:0 0 8px;font-size:12.5px">Nur Tätigkeitsvergütung, Zinsen und AfA aus ${n.Y}.</p><table><tbody>
+   ${trow("Tätigkeitsvergütung",n.tv)}${trow("Restgewinn",n.rest)}${trow("./. Ergänzungsbilanz",-n.afa,{cls:"minus"})}${trow("./. Sonderbilanz",-n.zins,{cls:"minus"})}
+   ${trow("./. Versorgungswerk ("+de(S.nr.vwAnteil)+" %)",-n.vwA,{cls:"minus"})}${trow("./. Krankenversicherung",-n.kvA,{cls:"minus"})}${trow("zvE",n.zve,{cls:"sub"})}
+   ${trow("./. ESt, Soli, KiSt",-n.t.sum,{cls:"minus",d:2})}${trow("+ Ergänzungsbilanz (nicht zahlungswirksam)",n.afa)}${trow("./. Krankenversicherung Differenz",-n.kvD,{cls:"minus",d:2})}
+   ${trow("./. Tilgung",-n.tilg,{cls:"minus"})}${trow("./. Restgewinn",-n.rest,{cls:"minus"})}${trow("Verfügbar p. a.",n.jahr,{cls:"sub"})}${trow("Netto mtl.",n.mtl,{cls:"sum"})}</tbody></table>`);
+ }};
+
+/* Darlehen */
+V.darlehen={render(){return `
+  <h2>Finanzierungsdarlehen</h2><p class="lead">Finanziert wird der Praxiswert abzüglich Eigenkapital. Zinsen und Tilgung werden im gewählten Rhythmus fällig, Sondertilgungen beziehen sich auf die laufende Monatsnummer.</p>
+  <div class="cols"><div class="stack"><div class="card"><h3>Konditionen</h3>
+   ${F("Eigenkapital","dl.ek",{unit:"€"})}${F("Zinssatz p. a.","dl.zins",{unit:"%"})}${F("Laufzeit","dl.laufzeit",{unit:"Mon."})}${F("Tilgungsfrei","dl.tf",{unit:"Mon."})}
+   ${Sel("Zahlungsrhythmus","dl.rhythmus",[["1","monatlich"],["3","vierteljährlich"]],{num:1})}${F("Auszahlung","dl.start",{type:"month"})}</div>
+   <div class="card"><h3>Sondertilgungen</h3><div class="lst">${S.dl.sonder.map((x,i)=>`<div class="it" style="grid-template-columns:90px minmax(0,1fr) auto">${cellIn(`dl.sonder.${i}.nr`,{aria:"Monat Nr."})}${cellIn(`dl.sonder.${i}.betrag`,{aria:"Betrag"})}<button class="x" data-action="del:dl.sonder:${i}" aria-label="Entfernen">×</button></div>`).join("")}</div>
+    <p class="mut" style="font-size:12px;margin:6px 0 0">Links Monat Nr., rechts Betrag in €</p><button class="btn small" style="margin-top:8px" data-action="add:dl.sonder">+ Sondertilgung</button></div></div>
+  <div class="stack">${out("kpis")}<div class="card"><h3>Restschuld</h3>${out("chart")}</div>
+   <div class="card"><div class="spread"><h3 style="margin:0">Tilgungsplan</h3><label class="chk"><input type="checkbox" data-path="ui.nurZahl" data-type="bool" ${S.ui.nurZahl?"checked":""}> nur Monate mit Zahlung</label></div>${out("plan")}</div></div></div>`;},
+ update(){put("kpis",`<div class="kpis">${kpi("Darlehen",eur(M.darlehen),"Praxiswert "+eur(M.praxiswert),true)}${kpi("Reguläre Tilgung",eur(M.tilgMtl*S.dl.rhythmus),S.dl.rhythmus==3?"je Quartal":"je Monat")}${kpi("Zinsen gesamt",eur(M.zinsGes))}${kpi("Getilgt",ymLabel(M.ende),M.plan.length+" Monate")}</div>`);
+  const ys={};M.plan.forEach(p=>{const y=ymY(p.ym);ys[y]=p.end;});const yk=Object.keys(ys);
+  put("chart",lineChart([{name:"Restschuld zum Jahresende",data:yk.map(k=>ys[k]),color:"var(--accent)",bars:1}],yk,{zero:1,h:200,aria:"Restschuld je Jahr"}));
+  const rows=S.ui.nurZahl?M.plan.filter(p=>p.rate>0):M.plan;let lastY=null;
+  put("plan",`<div class="tw" style="max-height:480px;overflow:auto"><table><thead><tr><th>Nr.</th><th>Monat</th><th>Restschuld Anfang</th><th>Zinsen</th><th>Tilgung</th><th>Rate</th><th>Restschuld Ende</th></tr></thead><tbody>
+   ${rows.map(p=>{const y=ymY(p.ym);let s="";if(lastY!==null&&y!==lastY){const l=M.loanY[lastY];s=`<tr class="sub"><td>Σ ${lastY}</td><td></td><td></td><td>${eur(l.zins,2)}</td><td>${eur(l.tilg,2)}</td><td>${eur(l.zins+l.tilg,2)}</td><td></td></tr>`;}lastY=y;
+     return s+`<tr><td>${p.nr}</td><td>${ymLabel(p.ym)}</td><td>${eur(p.anf,2)}</td><td>${eur(p.zins,2)}</td><td>${eur(p.tilg,2)}</td><td>${eur(p.rate,2)}</td><td>${eur(p.end,2)}</td></tr>`;}).join("")}
+   ${lastY!==null?`<tr class="sub"><td>Σ ${lastY}</td><td></td><td></td><td>${eur(M.loanY[lastY].zins,2)}</td><td>${eur(M.loanY[lastY].tilg,2)}</td><td>${eur(M.loanY[lastY].zins+M.loanY[lastY].tilg,2)}</td><td></td></tr>`:""}
+   <tr class="sum"><td colspan="3">Gesamt</td><td>${eur(M.zinsGes,2)}</td><td>${eur(M.darlehen,2)}</td><td>${eur(M.zinsGes+M.darlehen,2)}</td><td></td></tr></tbody></table></div>`);
+ }};
+
+/* Liquidität */
+V.liquiditaet={render(){const L=S.liq;return `
+  <h2>Liquiditätsplanung</h2><p class="lead">Monatsplan für dein Girokonto. Die Werte entstehen automatisch aus den anderen Reitern. Jede Zelle lässt sich überschreiben; überschriebene Zellen sind gelb markiert, leeren stellt den berechneten Wert wieder her.</p>
+  <div class="stack"><div class="grid3">
+   <div class="card"><h3>Zeitraum & Start</h3>${F("Planbeginn","liq.start",{type:"month"})}${F("Anzahl Monate","liq.monate")}${F("Kontostand zu Beginn","liq.saldo",{unit:"€"})}${F("Eintritt als Partner","liq.eintritt",{type:"month"})}</div>
+   <div class="card"><h3>Steuer & Vorsorge</h3>${F("ESt-Vorauszahlung im Eintrittsjahr","liq.vzErst",{unit:"€",hint:"je Quartal"})}${Sel("Nachzahlung fällig im","liq.nzMonat",MON.map((m,i)=>[String(i+1),m]),{num:1})}
+    ${F("Versorgungswerk anteilig bis Jahr","liq.vwHalbBis")}${F("Anteil bis dahin","liq.vwHalbAnteil",{unit:"%"})}</div>
+   <div class="card"><h3>Entnahmen & Sparen</h3>${Chk("Kapitaldienst ab 2. Jahr als Entnahme decken","liq.kdAuto")}${Chk("Restgewinn des Vorjahres quartalsweise entnehmen","liq.rgAuto")}
+    ${F("Zusätzliche Entnahme mtl.","liq.entMtl",{unit:"€"})}${F("ab","liq.entAb",{type:"month"})}${F("Übertrag Sparkonto mtl.","liq.spar",{unit:"€"})}${F("ab","liq.sparAb",{type:"month"})}</div>
+   <div class="card"><h3>Weitere feste Ausgaben</h3><div class="lst">${(L.wied||[]).map((w,i)=>`<div class="it4">${cellIn(`liq.wied.${i}.label`,{text:1,aria:"Bezeichnung"})}${cellIn(`liq.wied.${i}.betrag`,{aria:"Betrag mtl."})}<input type="month" data-path="liq.wied.${i}.ab" data-type="text" value="${esc(w.ab)}" aria-label="ab"><input type="month" data-path="liq.wied.${i}.bis" data-type="text" value="${esc(w.bis)}" aria-label="bis"><button class="x" data-action="del:liq.wied:${i}" aria-label="Entfernen">×</button></div>`).join("")}</div>
+    <p class="mut" style="font-size:12px;margin:6px 0 0">Je Zeile: Bezeichnung, darunter Betrag mtl. · ab · bis (optional)</p><button class="btn small" style="margin-top:8px" data-action="add:liq.wied">+ Ausgabe</button></div>
+  </div>
+  ${out("kpis")}<div class="card"><h3>Kontostand</h3>${out("chart")}</div>
+  <div class="spread"><h3 style="margin:0">Monatsplan</h3><button class="btn small" data-action="clearov">Alle Überschreibungen entfernen</button></div>
+  ${out("grid")}</div>`;},
+ update(){const L=M.liq;const ovN=Object.keys(S.liq.ov||{}).filter(k=>!k.endsWith("|note")).length;
+  put("kpis",`<div class="kpis">${kpi("Kontostand Ende",`<span class="${cls(L.end)}">${eur(L.end)}</span>`,ymLabel(L.rows[L.rows.length-1].ym),true)}${kpi("Tiefster Stand",`<span class="${cls(L.min.v)}">${eur(L.min.v)}</span>`,ymLabel(L.min.ym))}${kpi("Auf Sparkonto übertragen",eur(L.spar))}${kpi("Überschriebene Zellen",String(ovN),ovN?"gelb markiert":"alles berechnet")}</div>`);
+  put("chart",lineChart([{name:"Kontostand",data:L.rows.map(x=>x.bal),color:"var(--accent)",area:1,end:1,mark:L.rows.findIndex(x=>x.ym===L.min.ym)},{name:"Liquidität des Monats",data:L.rows.map(x=>x.liq),color:"var(--warn)",bars:1,op:.5}],L.rows.map(x=>MON[ymM(x.ym)-1]+" "+String(ymY(x.ym)).slice(2)),{zero:1,aria:"Kontostand je Monat"}));
+  renderGrid();
+ }};
+function renderGrid(){const L=M.liq,cols=L.cols;const el=document.getElementById("o-grid");if(!el)return;
+  const wrap=el.querySelector(".gridwrap");const sx=wrap?wrap.scrollLeft:0,sy=wrap?wrap.scrollTop:0;
+  const cell=(r,k)=>{const v=r.v[k],o=r.isOv&&r.isOv[k];return `<td><input inputmode="decimal" data-cell="${r.ym}|${k}" class="${o?"ov":""}" value="${Math.abs(v)<0.005?"":de(v,2)}" placeholder="–" aria-label="${ymLabel(r.ym)} ${k}" ${o?`title="Berechnet: ${de(r.auto[k],2)}"`:""}></td>`;};
+  let h=`<div class="gridwrap"><table class="grid"><thead><tr><th>Monat</th>${cols.map(c=>`<th title="${c.io>0?"Einnahme":"Ausgabe"}">${c.io>0?"+ ":"− "}${c.n}</th>`).join("")}<th>= Liquidität</th><th>− Sparkonto</th><th>Kontostand</th><th>Notiz</th></tr></thead><tbody>`;
+  for(const Y of Object.keys(L.byY)){const rs=L.byY[Y];
+    rs.forEach(r=>{h+=`<tr class="${r.bal<0?"lowrow":""}"><td class="m">${ymLabel(r.ym)}</td>${cols.map(c=>cell(r,c.k)).join("")}<td class="c ${cls(r.liq)}">${de(r.liq,2)}</td>${cell(r,"spar")}<td class="c bal">${de(r.bal,2)}</td><td><input class="note" data-cell="${r.ym}|note" data-type="text" value="${esc(r.note)}" aria-label="Notiz ${ymLabel(r.ym)}"></td></tr>`;});
+    h+=`<tr class="ysum"><td class="m">Σ ${Y}</td>${cols.map(c=>`<td>${de(sum(rs.map(r=>r.v[c.k])),2)}</td>`).join("")}<td class="${cls(sum(rs.map(r=>r.liq)))}">${de(sum(rs.map(r=>r.liq)),2)}</td><td>${de(sum(rs.map(r=>r.v.spar)),2)}</td><td>${de(rs[rs.length-1].bal,2)}</td><td></td></tr>`;}
+  h+=`</tbody></table></div>`;el.innerHTML=h;const w2=el.querySelector(".gridwrap");if(w2){w2.scrollLeft=sx;w2.scrollTop=sy;}}
+
+/* Hochrechnung */
+V.hochrechnung={render(){const U=S.ums;const yrs=Object.keys(U.vgl).sort();return `
+  <h2>Unterjährige Hochrechnung</h2><p class="lead">Monatsumsätze laut DATEV-BWA (Zeile 1020). Aus der saisonalen Verteilung der Vergleichsjahre wird das laufende Jahr hochgerechnet; dazu dein voraussichtlicher Gewinnanteil bis zum letzten erfassten Monat.</p>
+  <div class="stack">${out("kpis")}
+   <div class="card"><h3>Laufendes Jahr</h3><div class="row" style="margin-bottom:8px">${F("Jahr","ums.jahr")}${F("Gewinnkorrektur je Monat","ums.korrektur",{unit:"€",hint:"z. B. wegfallende Gehälter"})}</div>
+    <div class="tw"><table class="in"><thead><tr><th></th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>Gesamt</th></tr></thead><tbody>
+     <tr><td>Umsatz</td>${MON.map((m,i)=>`<td>${cellIn("ums.umsatz."+i,{aria:"Umsatz "+m})}</td>`).join("")}<td id="o-hu"></td></tr>
+     <tr><td>Gewinn</td>${MON.map((m,i)=>`<td>${cellIn("ums.gewinn."+i,{aria:"Gewinn "+m})}</td>`).join("")}<td id="o-hg"></td></tr>
+     <tr><td class="mut">Anteil am Vorjahr</td>${MON.map((m,i)=>`<td id="o-hp-${i}" class="mut" style="padding:4px 8px"></td>`).join("")}<td id="o-hpt" class="mut"></td></tr></tbody></table></div>
+    <p class="mut" style="font-size:12px;margin:6px 0 0">Leere Monate zählen als noch nicht erfasst.</p></div>
+   <div class="card"><h3>Umsatz je Monat</h3>${out("chart")}</div>
+   <div class="card"><h3>Vergleichsjahre</h3><div class="tw"><table class="in"><thead><tr><th>Jahr</th>${MON.map(m=>`<th>${m}</th>`).join("")}<th>Gesamt</th></tr></thead><tbody>
+    ${yrs.map(y=>`<tr><td><b>${y}</b> <button class="x" data-action="delvgl:${y}" aria-label="Jahr ${y} entfernen">×</button></td>${MON.map((m,i)=>`<td>${cellIn(`ums.vgl.${y}.${i}`,{aria:y+" "+m})}</td>`).join("")}<td id="o-vs-${y}" style="padding:4px 8px"></td></tr>`).join("")}
+    </tbody><tfoot id="o-vshare"></tfoot></table></div><button class="btn small" style="margin-top:8px" data-action="addvgl">+ Vergleichsjahr</button></div></div>`;},
+ update(){const H=hochrechnung(),U=S.ums;
+  put("kpis",`<div class="kpis">${kpi("Umsatz "+U.jahr+" bis "+(H.nM?MON[H.nM-1]:"–"),eur(H.ist),"Vorjahr gleicher Zeitraum "+eur(H.vjBis))}${kpi("Hochrechnung Jahresumsatz",eur(H.hoch),"Vorjahr "+eur(H.vjSum)+" · "+(H.vjSum?pc(H.hoch/H.vjSum-1,1):"–"),true)}
+   ${kpi("Gewinn inkl. Korrektur",eur(H.gewK),H.nM+" Monate · hochgerechnet "+eur(H.gewHoch))}${kpi("Dein Anteil bis jetzt",eur(H.meinAnteil),"TV "+eur(S.gv.tv/12*H.nM)+" + Rest "+eur(H.rest*S.gv.quote/100),true)}</div>`);
+  const s=(id,t)=>{const e=document.getElementById(id);if(e)e.textContent=t;};
+  s("o-hu",eur(H.ist));s("o-hg",eur(H.gew));MON.forEach((m,i)=>s("o-hp-"+i,H.filled[i]&&H.vjSum?pc((+U.umsatz[i]||0)/H.vjSum):""));s("o-hpt",pc(H.zielQ));
+  H.yrs.forEach(y=>s("o-vs-"+y,eur(sum(U.vgl[y]))));
+  const tf=document.getElementById("o-vshare");if(tf)tf.innerHTML=H.yrs.map(y=>`<tr><td class="mut" style="padding:3px 8px">% ${y}</td>${H.share[y].map(v=>`<td class="mut" style="padding:3px 8px">${pc(v)}</td>`).join("")}<td class="mut" style="padding:3px 8px">100 %</td></tr>`).join("")+
+    `<tr class="sub"><td style="padding:5px 8px">Ø Verteilung</td>${H.avgS.map(v=>`<td style="padding:5px 8px">${pc(v)}</td>`).join("")}<td style="padding:5px 8px">${pc(sum(H.avgS))}</td></tr>`;
+  const vj=U.vgl[String(U.jahr-1)]||U.vgl[H.yrs[H.yrs.length-1]]||MON.map(()=>0);
+  put("chart",lineChart([{name:"Umsatz "+U.jahr,data:MON.map((m,i)=>+U.umsatz[i]||0),color:"var(--accent)",bars:1},{name:"Vorjahr",data:vj.map(x=>+x||0),color:"var(--warn)"},{name:"Erwartung (Ø-Verteilung × Hochrechnung)",data:H.avgS.map(v=>v*H.hoch),color:"var(--muted)"}],MON,{zero:1,h:220,aria:"Umsatz je Monat"}));
+ }};
+
+/* Fahrzeug */
+const KFZROWS=[["name","Bezeichnung",1],["typ","Antrieb","sel"],["km","Jahresfahrleistung (km)"],["l","Verbrauch l / 100 km"],["lp","Preis je Liter (€)"],["kwh","Verbrauch kWh / 100 km"],["kp","Preis je kWh (€)"],["wart","Wartung je km (€)"],
+ ["blp","Bruttolistenpreis (€)"],["leas","Leasing p. a. (€)"],["st","Kfz-Steuer p. a. (€)"],["ver","Versicherung p. a. (€)"],["sonst","Sonstige Kosten p. a. (€)"],["dar","Darlehen (€)"],["zins","Zinssatz (%)"],["lz","Laufzeit (Jahre)"]];
+V.fahrzeug={render(){const fs=S.kfz.f;return `
+  <h2>Fahrzeug im Sonderbetriebsvermögen</h2><p class="lead">Vergleich von bis zu drei Fahrzeugen: private Nutzung nach der 1-%-Regelung (Hybrid ½, Elektro ¼), Kostendeckelung für Umsatz- und Einkommensteuer, Fahrten Wohnung–Arbeit und das Ergebnis der Sonder-GuV.</p>
+  <div class="cols"><div class="stack"><div class="card"><h3>Allgemein</h3>${F("Entfernung Wohnung–Arbeit","kfz.entf",{unit:"km"})}${F("Arbeitstage","kfz.tage")}${F("Entfernungspauschale","kfz.pausch",{unit:"€/km"})}
+   ${F("AfA-Nutzungsdauer","kfz.afaJ",{unit:"J."})}${F("Steuersatz für Ersparnis","kfz.satz",{unit:"%",hint:"Grenzsteuersatz laut Steuerreiter: "+pc(M.years[0].t.grenz,0)})}</div></div>
+  <div class="stack"><div class="card"><h3>Fahrzeuge</h3><div class="tw"><table class="in"><thead><tr><th></th>${fs.map((f,i)=>`<th>Fahrzeug ${i+1}</th>`).join("")}</tr></thead><tbody>
+   ${KFZROWS.map(([k,l,t])=>`<tr><td>${l}</td>${fs.map((f,i)=>`<td>${t==="sel"?`<select data-path="kfz.f.${i}.typ" aria-label="Antrieb">${[["V","Verbrenner"],["H","Hybrid"],["E","Elektro"]].map(([v,n])=>`<option value="${v}" ${f.typ===v?"selected":""}>${n}</option>`).join("")}</select>`:cellIn(`kfz.f.${i}.${k}`,{text:t===1,aria:l})}</td>`).join("")}</tr>`).join("")}
+   </tbody></table></div></div><div class="card"><h3>Ergebnis</h3>${out("res")}</div></div></div>`;},
+ update(){const R=S.kfz.f.map(kfz);const best=R.reduce((b,r,i)=>r.saldo>R[b].saldo?i:b,0);
+  const row=(l,f,o={})=>`<tr class="${o.c||""}"><td class="t">${l}</td>${R.map((r,i)=>`<td class="${cls(f(r))} ${o.b&&i===best?"best":""}">${eur(f(r))}</td>`).join("")}</tr>`;
+  const hd=t=>`<tr><td colspan="${R.length+1}" style="border:none;padding-top:12px"><h3 style="margin:0">${t}</h3></td></tr>`;
+  put("res",`<div class="tw"><table><thead><tr><th></th>${S.kfz.f.map(f=>`<th>${esc(f.name)}</th>`).join("")}</tr></thead><tbody>
+   ${hd("Private Nutzung")}${row("1-%-Wert mtl.",r=>r.pct1)}${row("Nutzungswert p. a.",r=>r.jahr,{c:"sub"})}
+   ${hd("Kostendeckelung Umsatzsteuer")}${row("Kosten mit Vorsteuer (Leasing, AfA, lfd., Reparatur)",r=>r.sumU)}${row("80 % des Nutzungswerts",r=>r.jahr*0.8)}${row("alternativ 50 % der Kosten",r=>r.sumU/2)}${row("Ansatz netto (19 % USt)",r=>r.ust,{c:"sub"})}${row("Ansatz brutto",r=>r.ustBr)}
+   ${hd("Kostendeckelung Einkommensteuer")}${row("Kfz-Kosten gesamt",r=>r.kost)}${row("./. Ansatz umsatzsteuerpflichtig",r=>-r.ust,{c:"minus"})}${row("Maximaler Ansatz umsatzsteuerfrei",r=>r.maxFrei,{c:"sub"})}
+   ${hd("Fahrten Wohnung–Arbeit")}${row("0,03 % × BLP × "+de(S.kfz.entf)+" km × 12",r=>r.fwa)}${row("./. Entfernungspauschale",r=>-r.pausch,{c:"minus"})}${row("Saldo",r=>r.fwaSaldo,{c:"sub"})}
+   ${hd("GuV Sonderbetriebsvermögen")}${row("Nutzungswert 19 % USt",r=>r.ust)}${row("Nutzungswert 0 % USt",r=>r.nwFrei)}${row("Fahrten Wohnung–Arbeit",r=>r.fwa)}${row("Betriebseinnahmen",r=>r.einn,{c:"sub"})}
+   ${row("AfA",r=>-r.afa,{c:"minus"})}${row("Kfz-Steuer, Versicherung, Leasing, Sonstiges",r=>-((+S.kfz.f[R.indexOf(r)].st||0)+(+S.kfz.f[R.indexOf(r)].ver||0)+(+S.kfz.f[R.indexOf(r)].leas||0)+(+S.kfz.f[R.indexOf(r)].sonst||0)),{c:"minus"})}
+   ${row("Laufende Kosten (Kraftstoff, Strom)",r=>-r.lfd,{c:"minus"})}${row("Reparatur, Wartung",r=>-r.rep,{c:"minus"})}${row("Zinsen Darlehen (1. Jahr)",r=>-r.z1,{c:"minus"})}${row("Entfernungspauschale",r=>-r.pausch,{c:"minus"})}
+   ${row("Ergebnis GuV",r=>r.erg,{c:"sub"})}
+   ${hd("Liquidität 1. Jahr")}${row("Laufende Ausgaben",r=>r.liq)}${row("Tilgung",r=>r.tilg)}${row("+ Steuerersparnis ("+de(S.kfz.satz)+" %)",r=>r.ersp)}${row("Saldo",r=>r.saldo,{c:"sum",b:1})}
+   </tbody></table></div><p class="mut" style="font-size:12px;margin:8px 0 0">Hervorgehoben: das Fahrzeug mit der geringsten Belastung im ersten Jahr.</p>`);
+ }};
+
+/* Girokonto */
+V.giro={render(){const G=S.giro;return `
+  <h2>Girokonto-Vergleich</h2><p class="lead">Monatliche Kosten der Kontomodelle bei deiner Zahl an Buchungen.</p>
+  <div class="cols"><div class="stack"><div class="card"><h3>Buchungen pro Monat</h3><div class="lst">${G.buch.map((b,i)=>`<div class="it" style="grid-template-columns:minmax(0,1fr) auto">${cellIn("giro.buch."+i,{text:1,aria:"Buchung"})}<button class="x" data-action="del:giro.buch:${i}" aria-label="Entfernen">×</button></div>`).join("")}</div>
+   <button class="btn small" style="margin-top:8px" data-action="add:giro.buch">+ Buchung</button>${F("Weitere Buchungen","giro.extra",{hint:"z. B. Kartenzahlungen"})}</div></div>
+  <div class="stack"><div class="card"><h3>Kontomodelle</h3><div class="tw"><table class="in"><thead><tr><th>Modell</th><th>Grundpreis</th><th>Paketpreis</th><th>Girocard</th><th>Freie Buchungen</th><th>je Buchung</th><th>Kosten mtl.</th><th>p. a.</th></tr></thead><tbody>
+   ${G.modelle.map((m,i)=>`<tr id="o-gr-${i}"><td>${cellIn(`giro.modelle.${i}.name`,{text:1,aria:"Name"})}</td>${["grund","paket","karte","frei","preis"].map(k=>`<td>${cellIn(`giro.modelle.${i}.${k}`,{aria:k})}</td>`).join("")}<td id="o-gm-${i}" style="padding:4px 8px;font-weight:600"></td><td id="o-gy-${i}" style="padding:4px 8px"></td></tr>`).join("")}
+   </tbody></table></div><p class="mut" style="font-size:12px;margin:6px 0 0">Freie Buchungen leer lassen = unbegrenzt.</p></div>${out("res")}</div></div>`;},
+ update(){const G=S.giro;const nb=G.buch.length+(+G.extra||0);
+  const c=G.modelle.map(m=>(+m.grund||0)+(+m.paket||0)+(+m.karte||0)+(m.frei==null||m.frei===""?0:Math.max(0,nb-m.frei)*(+m.preis||0)));
+  const b=c.indexOf(Math.min(...c));
+  c.forEach((v,i)=>{const e=document.getElementById("o-gm-"+i);if(e)e.textContent=eur(v,2);const y=document.getElementById("o-gy-"+i);if(y)y.textContent=eur(v*12,2);const r=document.getElementById("o-gr-"+i);if(r)r.className=i===b?"best":"";});
+  put("res",`<div class="kpis">${kpi("Buchungen mtl.",de(nb))}${kpi("Günstigstes Modell",esc(G.modelle[b].name),eur(c[b],2)+" mtl. · "+eur(c[b]*12,2)+" p. a.",true)}</div>`);
+ }};
+
+/* ---------- Steuerung ---------- */
+const tabsEl=document.getElementById("tabs"),main=document.getElementById("main");
+function drawTabs(){tabsEl.innerHTML=TABS.map(t=>`<button role="tab" data-tab="${t.id}" aria-selected="${t.id===S.ui.tab}">${t.n}</button>`).join("");}
+function flagBsp(){const e=document.getElementById("bsp");if(e)e.hidden=!S.beispiel;}
+function show(id){flagBsp();if(!V[id])id="uebersicht";S.ui.tab=id;drawTabs();main.innerHTML=V[id].render();V[id].update();try{history.replaceState(null,"","#"+id);}catch(e){}save();}
+function refresh(){M=compute();V[S.ui.tab].update();save();}
+tabsEl.addEventListener("click",e=>{const b=e.target.closest("[data-tab]");if(b){show(b.dataset.tab);window.scrollTo({top:0});}});
+main.addEventListener("input",e=>{const t=e.target;const p=t.dataset.path;if(!p)return;let v;
+  if(t.dataset.type==="bool")v=t.checked;else if(t.dataset.type==="text")v=t.value;else if(t.dataset.type==="num")v=+t.value;else if(t.tagName==="SELECT")v=t.value;else{v=parseDe(t.value);if(v===null&&!/(\.frei|umsatz\.\d+|gewinn\.\d+)$/.test(p))v=0;}
+  setP(S,p,v);refresh();});
+main.addEventListener("change",e=>{const t=e.target;
+  const c=t.dataset.cell;if(!c)return;const ov=S.liq.ov;const [ym,k]=c.split("|");
+  if(k==="note"){if(t.value.trim())ov[c]=t.value;else delete ov[c];}
+  else{const v=parseDe(t.value);const row=M.liq.rows.find(r=>r.ym===ym);const auto=row&&row.auto?row.auto[k]:0;
+    if(v===null){delete ov[c];}else if(!ov.hasOwnProperty(c)&&Math.abs(v-(auto||0))<0.005){}else ov[c]=v;}
+  setTimeout(()=>{const a=document.activeElement;const ac=a&&a.dataset?a.dataset.cell:null;M=compute();V.liquiditaet.update();save();
+    if(ac){const n=main.querySelector(`[data-cell="${CSS.escape(ac)}"]`);if(n){n.focus();try{n.select();}catch(e){}}}},0);});
+main.addEventListener("focusout",e=>{const t=e.target;const p=t.dataset.path;if(!p||t.dataset.type||t.tagName!=="INPUT")return;t.value=fmtIn(getP(S,p),p);});
+main.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.dataset.cell){e.preventDefault();const all=[...main.querySelectorAll("[data-cell]")];const [ym,k]=e.target.dataset.cell.split("|");
+  const nx=all.find(x=>{const [y2,k2]=x.dataset.cell.split("|");return k2===k&&y2>ym;});e.target.blur();if(nx)setTimeout(()=>{const n=main.querySelector(`[data-cell="${CSS.escape(nx.dataset.cell)}"]`);if(n){n.focus();n.select();}},5);}});
+main.addEventListener("click",e=>{const b=e.target.closest("[data-action]");if(!b)return;const a=b.dataset.action.split(":");
+  if(a[0]==="ansatz"){S.kp.ansatz=a[1];refresh();return;}
+  if(a[0]==="add"){const arr=getP(S,a[1]);const tpl={"gv.korrekturen":{label:"Neue Korrektur",betrag:0},"dl.sonder":{nr:24,betrag:10000},"giro.buch":"Neue Buchung",
+      "liq.wied":{id:"r"+Date.now().toString(36),label:"Neue Ausgabe",betrag:0,ab:S.liq.start,bis:""}}[a[1]];arr.push(clone(tpl));M=compute();show(S.ui.tab);return;}
+  if(a[0]==="del"){getP(S,a[1]).splice(+a[2],1);M=compute();show(S.ui.tab);return;}
+  if(a[0]==="addvgl"){const ys=Object.keys(S.ums.vgl).map(Number);const ny=ys.length?Math.max(...ys)+1:S.ums.jahr-1;S.ums.vgl[String(ny)]=MON.map(()=>0);M=compute();show("hochrechnung");return;}
+  if(a[0]==="delvgl"){delete S.ums.vgl[a[1]];M=compute();show("hochrechnung");return;}
+  if(a[0]==="clearov"){if(b.dataset.armed){Object.keys(S.liq.ov).forEach(k=>{if(!k.endsWith("|note"))delete S.liq.ov[k];});M=compute();show("liquiditaet");}
+    else{b.dataset.armed="1";b.textContent="Wirklich alle entfernen?";b.classList.add("danger");setTimeout(()=>{if(b.isConnected){delete b.dataset.armed;b.textContent="Alle Überschreibungen entfernen";b.classList.remove("danger");}},4000);}}
+});
+/* Datenpanel */
+const dp=document.getElementById("datapanel"),dpBtn=document.getElementById("btn-data"),dpTxt=document.getElementById("dp-text");
+dpBtn.addEventListener("click",()=>{dp.hidden=!dp.hidden;dpBtn.setAttribute("aria-expanded",String(!dp.hidden));if(!dp.hidden){dpTxt.value=JSON.stringify(S);msg("dp-msg","");}});
+document.getElementById("dp-close").addEventListener("click",()=>{dp.hidden=true;dpBtn.setAttribute("aria-expanded","false");});
+document.getElementById("dp-copy").addEventListener("click",()=>{dpTxt.value=JSON.stringify(S);navigator.clipboard&&navigator.clipboard.writeText(dpTxt.value).then(()=>msg("dp-msg","In die Zwischenablage kopiert"),()=>{dpTxt.select();msg("dp-msg","Text markiert – mit Strg+C / ⌘C kopieren");})||(dpTxt.select(),msg("dp-msg","Text markiert – mit Strg+C / ⌘C kopieren"));});
+document.getElementById("dp-load").addEventListener("click",()=>{try{loadObj(JSON.parse(dpTxt.value));msg("dp-msg","Daten geladen");}catch(e){msg("dp-msg","Der Text ist kein gültiger Datenstand aus diesem Tool.");}});
+const rs=document.getElementById("dp-reset");rs.addEventListener("click",()=>{if(rs.dataset.armed){S=clone(DEFAULTS);M=compute();show("uebersicht");dpTxt.value=JSON.stringify(S);msg("dp-msg","Auf Beispielwerte zurückgesetzt");delete rs.dataset.armed;rs.textContent="Auf Beispielwerte zurücksetzen";}
+  else{rs.dataset.armed="1";rs.textContent="Wirklich zurücksetzen? Eingaben gehen verloren";setTimeout(()=>{delete rs.dataset.armed;rs.textContent="Auf Beispielwerte zurücksetzen";},4000);}});
+
+function loadObj(o){if(!o||o.v!==1)throw 0;S=merge(clone(DEFAULTS),o);S.beispiel=!!o.beispiel;M=compute();show(S.ui.tab);dpTxt.value=JSON.stringify(S);}
+document.getElementById("dp-save").addEventListener("click",()=>{const s=clone(S);delete s.beispiel;const b=new Blob([JSON.stringify(s,null,1)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="meine-daten.json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);msg("dp-msg","Datei gespeichert");});
+document.getElementById("dp-file").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{loadObj(JSON.parse(r.result));msg("dp-msg","Daten aus "+f.name+" geladen");}catch(x){msg("dp-msg","Die Datei ist kein gültiger Datenstand aus diesem Tool.");}e.target.value="";};r.readAsText(f);});
+const h=(location.hash||"").slice(1);if(V[h])S.ui.tab=h;
+show(S.ui.tab);msg("savestate","");
+</script>
+</body>
+</html>
